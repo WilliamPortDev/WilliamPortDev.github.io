@@ -10,6 +10,31 @@
             e.preventDefault();
             grecaptcha.enterprise.ready(async () => {
                 const token = await grecaptcha.enterprise.execute('6Le32ewrAAAAADY-MSHGh9zSiXeZMcTZuA66du7R', { action: 'LOGIN' });
+                url = 'https://recaptchaenterprise.googleapis.com/v1/projects/charged-city-474918-d8/assessments?key=6Le32ewrAAAAADY-MSHGh9zSiXeZMcTZuA66du7R' 
+                data = {
+                    "event": {
+                        "token": token,
+                        "siteKey": "6Le32ewrAAAAADY-MSHGh9zSiXeZMcTZuA66du7R",
+                    }
+                }
+                try {
+                    const response = await fetch(url, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: json.stringify(data)
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`)
+                    }
+
+                    const responseData = await response.json();
+                    console.log('Success:', responseData);
+                } catch(error) {
+                    console.error('Error sending POST request:', error);
+                }
             });
         }
     </script>

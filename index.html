@@ -1,46 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6NW8S95VLK"></script>
+    <script>
+            function onClick(e) {
+                e.preventDefault();
+                grecaptcha.enterprise.ready(async () => {
+                    const token = await grecaptcha.enterprise.execute('6Le32ewrAAAAADY-MSHGh9zSiXeZMcTZuA66du7R', { action: 'LOGIN' });
+                    url = 'https://recaptchaenterprise.googleapis.com/v1/projects/charged-city-474918-d8/assessments?key=6Le32ewrAAAAADY-MSHGh9zSiXeZMcTZuA66du7R'
+                    data = {
+                        "event": {
+                            "token": token,
+                            "expectedAction": e,
+                            "siteKey": "6Le32ewrAAAAADY-MSHGh9zSiXeZMcTZuA66du7R",
+                        }
+                    }
+                    try {
+                        const response = await fetch(url, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: json.stringify(data)
+                        });
+
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! status: ${response.status}`)
+                        }
+
+                        const responseData = await response.json();
+                        console.log('Success:', responseData);
+                    } catch (error) {
+                        console.error('Error sending POST request:', error);
+                    }
+                });
+            }
+    </script>
+    <!-- Google tag (gtag.js) -->
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-6NW8S95VLK');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WilliamPort</title>
-    <script src="https://www.google.com/recaptcha/enterprise.js?render=6Le32ewrAAAAADY-MSHGh9zSiXeZMcTZuA66du7R"></script>
-    <script>
-        function onClick(e) {
-            e.preventDefault();
-            grecaptcha.enterprise.ready(async () => {
-                const token = await grecaptcha.enterprise.execute('6Le32ewrAAAAADY-MSHGh9zSiXeZMcTZuA66du7R', { action: 'LOGIN' });
-                url = 'https://recaptchaenterprise.googleapis.com/v1/projects/charged-city-474918-d8/assessments?key=6Le32ewrAAAAADY-MSHGh9zSiXeZMcTZuA66du7R' 
-                data = {
-                    "event": {
-                        "token": token,
-                        "expectedAction": e,
-                        "siteKey": "6Le32ewrAAAAADY-MSHGh9zSiXeZMcTZuA66du7R",
-                    }
-                }
-                try {
-                    const response = await fetch(url, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: json.stringify(data)
-                    });
-
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! status: ${response.status}`)
-                    }
-
-                    const responseData = await response.json();
-                    console.log('Success:', responseData);
-                } catch(error) {
-                    console.error('Error sending POST request:', error);
-                }
-            });
-        }
-    </script>
-</head>
 <body>
-
 </body>
 </html>

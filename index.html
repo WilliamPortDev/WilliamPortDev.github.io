@@ -6,10 +6,13 @@
     <title>WilliamPort</title>
     <script src="https://www.google.com/recaptcha/enterprise.js?render=6Le32ewrAAAAADY-MSHGh9zSiXeZMcTZuA66du7R"></script>
     <script>
-        grecaptcha.enterprise.ready(async () => {
-            const token = await grecaptcha.enterprise.execute('6Le32ewrAAAAADY-MSHGh9zSiXeZMcTZuA66du7R', { action: 'LOGIN' });
-        });
-        </script>
+        function onClick(e) {
+            e.preventDefault();
+            grecaptcha.enterprise.ready(async () => {
+                const token = await grecaptcha.enterprise.execute('6Le32ewrAAAAADY-MSHGh9zSiXeZMcTZuA66du7R', { action: 'LOGIN' });
+            });
+        }
+    </script>
 </head>
 <body>
 

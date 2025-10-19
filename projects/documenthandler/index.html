@@ -1,54 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6NW8S95VLK"></script>
-    <script>
-        function onClick(e) {
-            e.preventDefault();
-            grecaptcha.enterprise.ready(async () => {
-                const token = await grecaptcha.enterprise.execute('6Le32ewrAAAAADY-MSHGh9zSiXeZMcTZuA66du7R', { action: 'LOGIN' });
-                url = 'https://recaptchaenterprise.googleapis.com/v1/projects/charged-city-474918-d8/assessments?key=6Le32ewrAAAAADY-MSHGh9zSiXeZMcTZuA66du7R'
-                data = {
-                    "event": {
-                        "token": token,
-                        "expectedAction": e,
-                        "siteKey": "6Le32ewrAAAAADY-MSHGh9zSiXeZMcTZuA66du7R",
-                    }
-                }
-                try {
-                    const response = await fetch(url, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: json.stringify(data)
-                    });
-
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! status: ${response.status}`)
-                    }
-
-                    const responseData = await response.json();
-                    console.log('Success:', responseData);
-                } catch (error) {
-                    console.error('Error sending POST request:', error);
-                }
-            });
-        }
-    </script>
-    <!-- Google tag (gtag.js) -->
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-
-        gtag('config', 'G-6NW8S95VLK');
-    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document Handler Main Page</title>
+    <title>Document Handler</title>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-6NW8S95VLK"></script>
+        <script>
+            function onClick(e) {
+                e.preventDefault();
+                grecaptcha.enterprise.ready(async () => {
+                    const token = await grecaptcha.enterprise.execute('6Le32ewrAAAAADY-MSHGh9zSiXeZMcTZuA66du7R', { action: 'LOGIN' });
+                    url = 'https://recaptchaenterprise.googleapis.com/v1/projects/charged-city-474918-d8/assessments?key=6Le32ewrAAAAADY-MSHGh9zSiXeZMcTZuA66du7R'
+                    data = {
+                        "event": {
+                            "token": token,
+                            "expectedAction": e,
+                            "siteKey": "6Le32ewrAAAAADY-MSHGh9zSiXeZMcTZuA66du7R",
+                        }
+                    }
+                    try {
+                        const response = await fetch(url, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: json.stringify(data)
+                        });
+
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! status: ${response.status}`)
+                        }
+
+                        const responseData = await response.json();
+                        console.log('Success:', responseData);
+                    } catch (error) {
+                        console.error('Error sending POST request:', error);
+                    }
+                });
+            }
+        </script>
+        <!-- Google tag (gtag.js) -->
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+            gtag('js', new Date());
+
+            gtag('config', 'G-6NW8S95VLK');
+        </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        h1,
+        h2 {
+            color: #1a1a1a;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .content {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .links {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .links li {
+            margin: 10px 0;
+        }
+
+        .icon {
+            display: block;
+            margin: 0 auto 20px;
+        }
+    </style>
 </head>
+
 <body>
-    
+
+    <div class="content">
+        <h1>Document Handler</h1>
+        <img src="https://lh3.googleusercontent.com/V1-NHwuxb4-p3lBhnKJJ2WLKySjbpcZ5cZrI7waMh9U3pmduMLzBAArD3A91DernYjhV" alt="Document Handler Icon" class="icon" width="100" height="100">
+
+        <h2>About Document Handler</h2>
+        <p>Document Handler is a Google Sheets application that simplifies the process of creating and sharing copies of
+            documents or presentations. Ideal for educators, it allows users to easily send individualized copies of
+            materials to classroom participants while managing permissions and tracking document activity.</p>
+
+        <h2>Links</h2>
+        <ul class="links">
+            <li><a href="https://williamportdev.github.io/projects/documenthandler/privacy-policy">Privacy Policy</a></li>
+            <li><a href="https://williamportdev.github.io/projects/documenthandler/terms-of-service">Terms of Service</a></li>
+            <li><a href="https://williamportdev.github.io/support">Support</a></li>
+            <li><a href="https://forms.gle/k7AQustZ867zMSde7">Report an Issue</a></li>
+            <li><a href="https://williamportdev.github.io/post-install-tip">Post-Install Instructions</a></li>
+        </ul>
+    </div>
+
 </body>
+
 </html>
